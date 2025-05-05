@@ -14,17 +14,63 @@
 
 <h2>Edit Item</h2>
 
-<form>
+<form method="POST">
     <fieldset>
         <legend>Please enter your information:</legend>
 
+        {{ form.csrf_token }}
+        
+        <p>
+            {{ form.name.label }}
+            {{ form.name }}
+            {% if form.name.errors %}
+                {% for error in form.name.errors %}
+                    <span class="error">{{ error }}</span>
+                {% endfor %}
+            {% endif %}
+        </p>
 
+        <p>
+            {{ form.price.label }}
+            {{ form.price }}
+            {% if form.price.errors %}
+                {% for error in form.price.errors %}
+                    <span class="error">{{ error }}</span>
+                {% endfor %}
+            {% endif %}
+        </p>
 
-        <!-- TODO: Remove the next paragraph and use the `form` object passed in 
-            from the route to render a form. -->
-        <p><em>Form fields go here!</em></p>
+        <p>
+            {{ form.category.label }}
+            {{ form.category }}
+            {% if form.category.errors %}
+                {% for error in form.category.errors %}
+                    <span class="error">{{ error }}</span>
+                {% endfor %}
+            {% endif %}
+        </p>
 
-        <input type="submit" value="Submit">
+        <p>
+            {{ form.photo_url.label }}
+            {{ form.photo_url }}
+            {% if form.photo_url.errors %}
+                {% for error in form.photo_url.errors %}
+                    <span class="error">{{ error }}</span>
+                {% endfor %}
+            {% endif %}
+        </p>
+
+        <p>
+            {{ form.store.label }}
+            {{ form.store }}
+            {% if form.store.errors %}
+                {% for error in form.store.errors %}
+                    <span class="error">{{ error }}</span>
+                {% endfor %}
+            {% endif %}
+        </p>
+
+        {{ form.submit }}
     </fieldset>
 </form>
 

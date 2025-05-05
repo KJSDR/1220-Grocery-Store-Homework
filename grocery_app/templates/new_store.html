@@ -7,15 +7,30 @@
     <fieldset>
         <legend>Please enter your information:</legend>
 
+        {{ form.csrf_token }}
+        
+        <p>
+            {{ form.title.label }}
+            {{ form.title }}
+            {% if form.title.errors %}
+                {% for error in form.title.errors %}
+                    <span class="error">{{ error }}</span>
+                {% endfor %}
+            {% endif %}
+        </p>
 
+        <p>
+            {{ form.address.label }}
+            {{ form.address }}
+            {% if form.address.errors %}
+                {% for error in form.address.errors %}
+                    <span class="error">{{ error }}</span>
+                {% endfor %}
+            {% endif %}
+        </p>
 
-        <!-- TODO: Remove the next paragraph and use the `form` object passed in 
-            from the route to render a form. -->
-        <p><em>Form fields go here!</em></p>
-
-        <input type="submit" value="Submit">
+        {{ form.submit }}
     </fieldset>
 </form>
-
 
 {% endblock %}
