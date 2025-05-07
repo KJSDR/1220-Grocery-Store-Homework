@@ -3,7 +3,11 @@
 
 <h1>Store - {{ store.title }}</h1>
 
-<strong>Address:</strong> {{ store.address }}
+<p><strong>Address:</strong> {{ store.address }}</p>
+
+{% if store.created_by %}
+<p><strong>Created by:</strong> {{ store.created_by.username }}</p>
+{% endif %}
 
 <h2>Items</h2>
 
@@ -23,7 +27,7 @@
 <form method="POST">
     <fieldset>
         <legend>Please enter your information:</legend>
-
+        
         {{ form.csrf_token }}
         
         <p>

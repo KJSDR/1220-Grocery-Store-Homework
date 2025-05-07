@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>Your Shopping List</h1>
+
+{% if shopping_list_items %}
+    <div class="items">
+        {% for item in shopping_list_items %}
+        <div class="item-details">
+            <a href="/item/{{ item.id }}">
+                <img src="{{ item.photo_url }}" alt="{{ item.name }}" width="200px">
+                <p><strong>{{ item.name }}</strong></p>
+            </a>
+            <p><strong>Price: ${{ item.price }}</strong></p>
+            <p><strong>Store: {{ item.store.title }}</strong></p>
+            
+            <!-- Remove from shopping list button (Stretch Challenge) -->
+            <form action="{{ url_for('main.remove_from_shopping_list', item_id=item.id) }}" method="POST">
+                <input type="submit" value="Remove from Shopping List">
+            </form>
+        </div>
+        {% endfor %}
+    </div>
+{% else %}
+    <p>Your shopping list is empty. Browse some items and add them to your list!</p>
+{% endif %}
+
+<p><a href="{{ url_for('main.homepage') }}">Back to Home</a></p>
+
+{% endblock %}

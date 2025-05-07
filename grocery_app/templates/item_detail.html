@@ -11,13 +11,22 @@
 
 <p><strong>Store:</strong> {{ item.store.title }}</p>
 
+{% if item.created_by %}
+<p><strong>Created by:</strong> {{ item.created_by.username }}</p>
+{% endif %}
+
+{% if current_user.is_authenticated %}
+    <form action="{{ url_for('main.add_to_shopping_list', item_id=item.id) }}" method="POST">
+        <input type="submit" value="Add to Shopping List">
+    </form>
+{% endif %}
 
 <h2>Edit Item</h2>
 
 <form method="POST">
     <fieldset>
         <legend>Please enter your information:</legend>
-
+        
         {{ form.csrf_token }}
         
         <p>
